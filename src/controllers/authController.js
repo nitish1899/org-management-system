@@ -1,5 +1,5 @@
 const { User, Session } = require('../models');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 exports.register = async (req, res) => {
@@ -25,9 +25,10 @@ exports.login = async (req, res) => {
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
-
+        console.log(user.password_hash)
         const validPassword = await bcrypt.compare(password, user.password_hash);
         if (!validPassword) {
+            console.log(validPassword)
             return res.status(401).json({ error: 'Invalid password' });
         }
 
