@@ -1,14 +1,15 @@
 const { User, Session } = require('../models');
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 
 exports.register = async (req, res) => {
     const { username, password, email, roleId } = req.body;
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
+        console.log('hashedPassword', hashedPassword);
         const user = await User.create({
             username,
-            password_hash: hashedPassword,
+            password_hash: `${hashedPassword}`,
             email,
             role_id: roleId
         });
