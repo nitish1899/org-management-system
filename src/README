@@ -1,0 +1,50 @@
+# Instructions
+- Clone the git repository
+- Run npm install
+- Connect to MySQL database and create and update the .env file
+- Run npm start
+
+
+# Database Design
+
+## Tables
+
+### Role
+- role_id (Primary Key)
+- role_name (e.g., Admin, Manager, Member)
+
+### User
+- user_id (Primary Key)
+- username
+- password_hash
+- email
+- role_id (Foreign Key referencing Roles table)
+
+### Organization
+- organization_id (Primary Key)
+- organization_name
+
+### UserOrganization
+- user_id (Foreign Key referencing Users table)
+- organization_id (Foreign Key referencing Organizations table)
+- user_organization_id (Primary Key)
+- role_id (Foreign Key referencing Roles table)
+
+### Task
+- task_id (Primary Key)
+- task_name
+- description
+- organization_id (Foreign Key referencing Organizations table)
+- created_by (Foreign Key referencing Users table)
+- assigned_to (Foreign Key referencing Users table, nullable)
+
+### Session
+- session_id (Primary Key)
+- user_id (Foreign Key referencing Users table)
+- session_token
+- current_organization_id (Foreign Key referencing Organizations table, nullable)
+
+
+
+
+
